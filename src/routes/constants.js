@@ -1,3 +1,9 @@
 export const LOGIN = "/";
 // export const LOGIN = "/signin";
 export const REGISTER = "/register";
+export const DASHBOARD = "/dashboard";
+export const OVERVIEW = "/dashboard/overview";
+export const ORGANIZATIONS = "/dashboard/organizations";
+export const SUBSCRIPTION = "/dashboard/subscription";
+export const NOTIFICATIONS = "/dashboard/notifications";
+export const SETTINGS = "/dashboard/settings";
