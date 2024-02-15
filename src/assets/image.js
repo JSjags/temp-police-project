@@ -1,3 +1,3 @@
 const PATH = "/images";
 
-// export const logo = `${PATH}/logo.svg`;
+export const scale = `${PATH}/scale.svg`;
