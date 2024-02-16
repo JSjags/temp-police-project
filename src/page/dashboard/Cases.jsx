@@ -21,9 +21,9 @@ const Cases = () => {
   return (
     <div className="px-4">
       {/* First Section */}
-      <div className="rounded-xl font-poppins mb-4 flex gap-5">
+      <div className="rounded-xl font-poppins mb-4 flex flex-wrap gap-5">
         {/* first card */}
-        <div className="p-7 bg-white flex gap-x-5 items-center w-[clamp(200px,100%,280px)]">
+        <div className="p-7 bg-white flex gap-x-5 items-center w-full min-[400px]:w-[clamp(200px,100%,280px)]">
           <div className="w-16 h-16 p-[6px] bg-[#5b92ff20] flex justify-center items-center rounded-full">
             <img src={handcuffs} />
           </div>
@@ -33,7 +33,7 @@ const Cases = () => {
           </div>
         </div>
         {/* second card */}
-        <div className="p-7 bg-white flex gap-x-5 items-center w-[clamp(200px,100%,280px)]">
+        <div className="p-7 bg-white flex gap-x-5 items-center w-full min-[400px]:w-[clamp(200px,100%,280px)]">
           <div className="w-16 h-16 p-[6px] bg-[#ffd56b1d] flex justify-center items-center rounded-lg">
             <img src={handcuffs} />
           </div>
@@ -43,7 +43,7 @@ const Cases = () => {
           </div>
         </div>
         {/* third card */}
-        <div className="p-7 bg-white flex gap-x-5 items-center w-[clamp(200px,100%,280px)]">
+        <div className="p-7 bg-white flex gap-x-5 items-center  w-full min-[400px]:w-[clamp(200px,100%,280px)]">
           <div className="w-16 h-16 p-[6px] bg-[#ff906b23] flex justify-center items-center">
             <img src={handcuffs} />
           </div>
@@ -55,11 +55,11 @@ const Cases = () => {
       </div>
 
       {/* Second Section */}
-      <div className="flex font-poppins mb-2 gap-5 items-end">
+      <div className="flex flex-wrap font-poppins mb-2 gap-5 items-end">
         <div>
           <p>Date:</p>
           <div className="flex gap-5 mt-2 items-center justify-between">
-            <div className="flex w-[clamp(240px,100%,303px)] text-sm text-project-light-black whitespace-nowrap">
+            <div className="flex flex-wrap w-[clamp(240px,100%,303px)] text-sm text-project-light-black whitespace-nowrap">
               {/* date from */}
               {/* <button
                 aria-label="From date"
@@ -135,8 +135,8 @@ const Cases = () => {
       </div>
 
       {/* Third Section */}
-      <div className="p-5 bg-white font-poppins mt-2">
-        <div className="grid grid-cols-3 pt-4 gap-4">
+      <div className="p-5 bg-white font-poppins mt-5 sm:mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-4 gap-4">
           {cases.map((item) => (
             <CaseCard key={item.id} details={item} />
           ))}

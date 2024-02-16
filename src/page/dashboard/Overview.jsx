@@ -214,11 +214,11 @@ const Overview = () => {
   };
 
   return (
-    <div className="px-4">
+    <div className="px-4 w-full">
       {/* First Section */}
       <div className="p-5 rounded-xl bg-white font-poppins">
         {/* time range tabs*/}
-        <ul className="flex font-medium text-sm relative">
+        <ul className="flex font-medium text-xs min-[380px]:text-sm relative">
           <li
             onClick={() => setCurrentTabIndex(0)}
             ref={dailyRef}
@@ -266,7 +266,7 @@ const Overview = () => {
         </ul>
 
         {/* Summary section */}
-        <div className="grid grid-cols-3 gap-6 mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
           {/* First card */}
           <div>
             <div className="justify-between h-52 pt-8 pl-8 border border-solid border-project-gray rounded-xl">
@@ -296,7 +296,7 @@ const Overview = () => {
           {/* Second card */}
           <div>
             <div className="justify-between h-52 pt-6 pl-4 border border-solid border-project-gray rounded-xl">
-              <p className="font-inter text-base text-project-light-black font-semibold">
+              <p className="font-inter text-xs min-[500px]:text-base text-project-light-black font-semibold">
                 Legal Representation
               </p>
               <div className="mt-3">
@@ -347,7 +347,7 @@ const Overview = () => {
           <div>
             <div className="flex flex-col justify-between h-52 pt-6 border border-solid border-project-gray rounded-xl">
               <div className="flex justify-between items-center">
-                <p className="font-inter text-base text-project-light-black font-semibold pl-4 whitespace-nowrap">
+                <p className="font-inter text-xs min-[500px]:text-base text-project-light-black font-semibold pl-4 whitespace-nowrap">
                   Arrest Summary
                 </p>
                 <div className="mr-4 font-dmsans font-semibold border rounded-sm bg-white border-solid border-project-gray">
@@ -475,7 +475,7 @@ const Overview = () => {
             <img src={chevron} className="-rotate-90" />
           </button>
         </div>
-        <div className="grid grid-cols-3 pt-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-4 gap-4">
           {cases.slice(0, 3).map((item) => (
             <CaseCard key={item.id} details={item} />
           ))}

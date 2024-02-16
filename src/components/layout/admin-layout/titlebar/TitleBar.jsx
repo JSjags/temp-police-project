@@ -15,7 +15,7 @@ const TitleBar = () => {
 
   const generatePageTitle = () => {
     if (pathname.includes("overview")) {
-      return "Dashboard Overview";
+      return "Overview";
     } else if (pathname.includes("cases")) {
       return "Cases";
     } else if (pathname.includes("report")) {
@@ -41,12 +41,12 @@ const TitleBar = () => {
           {generatePageTitle()}
         </p>
       </div>
-      <div className="flex gap-2 sm:gap-4 items-center">
+      <div className="flex gap-2 sm:gap-4 mr-10 items-center">
         <button
           aria-label="Profile"
           className="flex flex-nowrap gap-2 items-center hover:bg-primary-gray rounded p-1"
         >
-          <img src={placeholder} className="w-[18px] sm:w-10" />
+          <img src={placeholder} className="w-[28px] h-[28px] sm:w-10" />
           <div className="font-poppins flex flex-col justify-between items-start">
             <p className="font-inter hidden sm:block text-sm">Yarri Sandra</p>
             <p className="font-inter hidden sm:block text-sm text-gray-500">
