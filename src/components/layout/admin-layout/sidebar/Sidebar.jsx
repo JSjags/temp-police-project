@@ -90,7 +90,7 @@ const Sidebar = ({ sidebarItems }) => {
                     navigate(`/${sidebarItem.route}`);
                   }}
                   style={{
-                    marginTop: i == 5 ? "40px" : "",
+                    marginTop: i == 2 ? "140px" : "",
                   }}
                 >
                   <img
