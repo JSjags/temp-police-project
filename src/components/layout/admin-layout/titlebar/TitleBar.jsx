@@ -4,6 +4,7 @@
 import placeholder from "../../../../assets/titlebar/placeholder-avatar.svg";
 import chevron from "../../../../assets/titlebar/chevron.svg";
 import { useLocation, useNavigate } from "react-router-dom";
+import policeLogo from "../../../../assets/sidebar/police-project-logo.svg";
 
 const TitleBar = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const TitleBar = () => {
         className="flex gap-1 flex-nowrap items-center w-fit cursor-pointer"
         onClick={navigateToOverview}
       >
+        <img src={policeLogo} className="w-12 md:hidden" />
         <p className="sm:text-xl font-pt-serif uppercase text-project-light-black text-2xl font-bold">
           {generatePageTitle()}
         </p>
