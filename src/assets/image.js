@@ -1,3 +1,5 @@
 const PATH = "/images";
 
-// export const logo = `${PATH}/logo.svg`;
+export const scale = `${PATH}/scale.svg`;
+export const npf_logo_white = `${PATH}/npflogo-white.svg`;
+export const npf_logo_blue = `${PATH}/npflogo-blue.svg`;

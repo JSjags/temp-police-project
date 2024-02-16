@@ -30,7 +30,7 @@ const RouterConfig = () => {
           <Route path={routes.NOTIFICATIONS} element={<Reports />} />
           <Route path={routes.SETTINGS} element={<Settings />} />
           <Route path={routes.HELP} element={<Help />} />
-          <Route path={"*"} element={<Navigate to={"/dashboard/overview"} />} />
+          <Route path={"*"} element={<Navigate to={"/"} />} />
         </Route>
       </Routes>
     </>
