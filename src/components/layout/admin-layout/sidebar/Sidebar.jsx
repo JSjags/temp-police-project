@@ -196,6 +196,7 @@ const Sidebar = ({ sidebarItems }) => {
                       className="flex mx-auto w-[70%] gap-x-3 items-center relative z-[1] transition-all duration-300"
                       aria-label={sidebarItem.title}
                       onClick={() => {
+                        setShowMenu(false);
                         setCurrentTabIndex(i);
                         navigate(`/${sidebarItem.route}`);
                       }}
