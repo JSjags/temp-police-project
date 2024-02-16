@@ -17,26 +17,26 @@ const sidebarItems = [
     route: "dashboard/cases",
     icon: cases,
   },
-  {
-    title: "Reports",
-    route: "dashboard/reports",
-    icon: reports,
-  },
-  {
-    title: "Notifications",
-    route: "dashboard/notifications",
-    icon: notifications,
-  },
-  {
-    title: "Settings",
-    route: "dashboard/settings",
-    icon: settings,
-  },
-  {
-    title: "Help Center",
-    route: "dashboard/help",
-    icon: help,
-  },
+  // {
+  //   title: "Reports",
+  //   route: "dashboard/reports",
+  //   icon: reports,
+  // },
+  // {
+  //   title: "Notifications",
+  //   route: "dashboard/notifications",
+  //   icon: notifications,
+  // },
+  // {
+  //   title: "Settings",
+  //   route: "dashboard/settings",
+  //   icon: settings,
+  // },
+  // {
+  //   title: "Help Center",
+  //   route: "dashboard/help",
+  //   icon: help,
+  // },
   {
     title: "Logout",
     route: "dashboard/logout",
