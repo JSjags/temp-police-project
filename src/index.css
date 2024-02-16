@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+.custom-outline {
+  outline-color: #020065;
+}
+.custom-outline:focus {
+  outline-color: #020065;
+}
+.custom-outline:active {
+  outline-color: #020065;
+}
+
+.react-datepicker {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.react-datepicker__input-container {
+  cursor: pointer;
+}
+
+.react-datepicker__input-container input {
+  width: fit-content;
+  padding: 8px 8px 8px 28px;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.react-datepicker__input-container input:focus {
+  outline-color: #020065;
+}
