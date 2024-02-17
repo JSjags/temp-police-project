@@ -94,3 +94,10 @@
   line-height: 27.934px;
   letter-spacing: -0.48px;
 }
+.auth-btn,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  /* background-color: transparent; */
+  background-color: #4747ff !important;
+}

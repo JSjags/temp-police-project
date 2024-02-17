@@ -1,9 +1,51 @@
 import { npf_logo_white, npf_logo_blue, scale } from "../../assets";
 import { Link } from "react-router-dom";
-import { REGISTER } from "../../routes/constants";
+import { REGISTER, DASHBOARD } from "../../routes/constants";
+import { useEffect } from "react";
+import { Form, Field } from "react-final-form";
+import { useLoginUserMutation } from "../../service/user.service";
+import { useNavigate } from "react-router-dom";
+import rtkMutation from "../../utils/rtkMutation";
+import validate from "validate.js";
+import { showAlert } from "../../static/alert";
 import "./auth.css";
 
+const constraints = {
+  identifier: {
+    presence: true,
+  },
+  password: {
+    presence: true,
+    length: {
+      minimum: 6,
+    },
+  },
+};
+
 function Login() {
+  const [loginUser, { error, isSuccess }] = useLoginUserMutation({
+    provideTag: ["User"],
+  });
+
+  const navigate = useNavigate();
+
+  const onSubmit = async (values) => {
+    await rtkMutation(loginUser, values);
+  };
+
+  const validateForm = (values) => {
+    return validate(values, constraints) || {};
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(DASHBOARD);
+      showAlert("", "Login Successful!", "success");
+    } else if (error) {
+      showAlert("Oops", error.data.message || "An error occurred", "error");
+    }
+  }, [isSuccess, error, navigate]);
+
   return (
     <>
       <section className="h-screen justify-center items-center hidden sm:block md:flex lg:flex">
@@ -26,41 +68,79 @@ function Login() {
           </div>
         </div>
 
-        <div className="h-screen bg-[#020065] p-8 w-full flex justify-center items-center">
-          <div>
+        <div className="h-screen bg-[#020065] p-5 w-full flex justify-center items-center">
+          <div className="w-3/5">
             <h5 className="login-text mb-2">Login</h5>
             <p className="login-desc pb-7">Login to the dashboard</p>
+            <Form
+              onSubmit={onSubmit}
+              validate={validateForm}
+              render={({ handleSubmit, form, submitting }) => (
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-7">
+                    <div className="relative w-full input-component empty sm:inline-block sm:pr-1">
+                      <Field
+                        name="identifier"
+                        component="input"
+                        type="text"
+                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                      />
 
-            <div className="relative w-full input-component mb-7 empty sm:inline-block sm:pr-1">
-              <input
-                id="email"
-                type="text"
-                name="email"
-                className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
-              />
-              <label
-                htmlFor="email"
-                className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
-              >
-                Email/ID
-              </label>
-            </div>
+                      <label
+                        htmlFor="identifier"
+                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                      >
+                        Email/ID
+                      </label>
+                    </div>
+                    {form.getState().submitFailed &&
+                      form.getState().errors.identifier && (
+                        <span className="text-red-600">
+                          {form.getState().errors.identifier}
+                        </span>
+                      )}
+                  </div>
 
-            <div className="relative w-full input-component mb-5 empty sm:inline-block sm:pr-1">
-              <input
-                id="password"
-                type="password"
-                name="password"
-                className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
-              />
-              <label
-                htmlFor="password"
-                className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
-              >
-                Password{" "}
-              </label>
-            </div>
-            <button className="auth-btn">Next</button>
+                  <div className="mb-5">
+                    <div className="relative w-full input-component empty sm:inline-block sm:pr-1">
+                      <Field
+                        name="password"
+                        component="input"
+                        type="password"
+                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                      />
+
+                      <label
+                        htmlFor="password"
+                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                      >
+                        Password{" "}
+                      </label>
+                    </div>
+                    {form.getState().submitFailed &&
+                      form.getState().errors.password && (
+                        <span className="text-red-600">
+                          {form.getState().errors.password}
+                        </span>
+                      )}
+                  </div>
+
+                  <button className="auth-btn" type="submit">
+                    {submitting ? (
+                      <>
+                        <span className="loading-dots">
+                          <span className="loading-dots-dot"></span>
+                          <span className="loading-dots-dot"></span>
+                          <span className="loading-dots-dot"></span>
+                        </span>
+                      </>
+                    ) : (
+                      "Next"
+                    )}
+                  </button>
+                </form>
+              )}
+            />
             <p className="auth-question flex gap-5 pt-5">
               Don’t have an account?{" "}
               <Link className="auth-link" to={REGISTER}>
@@ -88,39 +168,75 @@ function Login() {
             <h5 className="login-text mb-2">Login</h5>
             <p className="login-desc pb-7">Login to the dashboard</p>
 
-            <div className="relative w-full input-component mb-7 empty sm:inline-block sm:pr-1">
-              <input
-                id="email"
-                type="text"
-                name="email"
-                className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
-              />
-              <label
-                id="outlined"
-                htmlFor="email"
-                className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
-              >
-                Email/ID
-              </label>
-            </div>
+            <Form
+              onSubmit={onSubmit}
+              validate={validateForm}
+              render={({ handleSubmit, form, submitting }) => (
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-7">
+                    <div className="relative w-full input-component empty sm:inline-block sm:pr-1">
+                      <Field
+                        name="identifier"
+                        component="input"
+                        type="text"
+                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                      />
 
-            <div className="relative w-full input-component mb-5 empty sm:inline-block sm:pr-1">
-              <input
-                id="password"
-                type="password"
-                name="password"
-                className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
-              />
-              <label
-                id="outlined"
-                htmlFor="password"
-                className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
-              >
-                Password{" "}
-              </label>
-            </div>
+                      <label
+                        htmlFor="identifier"
+                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                      >
+                        Email/ID
+                      </label>
+                    </div>
+                    {form.getState().submitFailed &&
+                      form.getState().errors.identifier && (
+                        <span className="text-red-600">
+                          {form.getState().errors.identifier}
+                        </span>
+                      )}
+                  </div>
 
-            <button className="auth-btn">Next</button>
+                  <div className="mb-5">
+                    <div className="relative w-full input-component empty sm:inline-block sm:pr-1">
+                      <Field
+                        name="password"
+                        component="input"
+                        type="password"
+                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                      />
+
+                      <label
+                        htmlFor="password"
+                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                      >
+                        Password{" "}
+                      </label>
+                    </div>
+                    {form.getState().submitFailed &&
+                      form.getState().errors.password && (
+                        <span className="text-red-600">
+                          {form.getState().errors.password}
+                        </span>
+                      )}
+                  </div>
+
+                  <button className="auth-btn" type="submit">
+                    {submitting ? (
+                      <>
+                        <span className="loading-dots">
+                          <span className="loading-dots-dot"></span>
+                          <span className="loading-dots-dot"></span>
+                          <span className="loading-dots-dot"></span>
+                        </span>
+                      </>
+                    ) : (
+                      "Next"
+                    )}
+                  </button>
+                </form>
+              )}
+            />
             <p className="auth-question flex gap-5 pt-5">
               Don’t have an account?{" "}
               <Link className="auth-link" to={REGISTER}>
