@@ -38,7 +38,8 @@ const constraints = {
 };
 
 function Register() {
-  // const { data: divisionData } = useGetDivisionQuery();
+  const { data: divisionData } = useGetDivisionQuery();
+  console.log(divisionData);
 
   const navigate = useNavigate();
   const validateForm = (values) => {
@@ -170,8 +171,12 @@ function Register() {
         rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
                       >
                         <option value="" selected disabled hidden></option>
-                        <option value="1">Division 1</option>
-                        <option value="2">Division 2</option>
+                        {divisionData &&
+                          divisionData.data.map((row) => (
+                            <option key={row._id} value={row._id}>
+                              {row.division_name}
+                            </option>
+                          ))}
                       </Field>
                       <label
                         htmlFor="police_division_id"

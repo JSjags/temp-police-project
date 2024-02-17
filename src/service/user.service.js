@@ -14,17 +14,22 @@ export const userApiSlice = apiSlice.injectEndpoints({
       onQueryStarted: async (credentials, { dispatch, queryFulfilled }) => {
         try {
           const { data } = await queryFulfilled;
-          const { accessToken, user } = data;
+          // const { accessToken, user } = data;
+          const accessToken = data.data.accessToken;
+          const user = data.data.user;
+          const refreshToken = data.data.user.refreshToken;
+
+          console.log(accessToken, "data");
 
           dispatch(
             updateUser({
               token: accessToken,
               user,
-              refreshToken: user.refreshToken,
+              refreshToken: refreshToken,
             })
           );
         } catch (error) {
-          // console.log(error);
+          console.log(error);
           return;
         }
       },
@@ -80,6 +85,4 @@ export const {
   useLoginUserMutation,
   useRegisterUserMutation,
   useGetUserQuery,
-  useUpdateUserMutation,
-  useUpdatePasswordMutation,
 } = userApiSlice;
