@@ -8,17 +8,23 @@ import {
   Settings,
   Help,
 } from "../page";
-import { ProtectedRoute } from "../guards";
+// import { ProtectedRoute } from "../guards";
 import { AdminLayout } from "../layouts";
 
 import * as routes from "./constants";
+
+import ProtectedRoute from "../components/protected/ProtectedRoute";
+import PublicRoute from "../components/protected/PublicRoute";
 
 const RouterConfig = () => {
   return (
     <>
       <Routes>
         <Route path={routes.REGISTER} element={<Register />} />
-        <Route path={routes.LOGIN} element={<Login />} />
+        <Route
+          path={routes.LOGIN}
+          element={<PublicRoute component={Login} />}
+        />
         <Route
           path={routes.DASHBOARD}
           element={<ProtectedRoute component={AdminLayout} />}
