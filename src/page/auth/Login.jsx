@@ -39,8 +39,8 @@ function Login() {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(DASHBOARD);
       showAlert("", "Login Successful!", "success");
+      navigate(DASHBOARD);
     } else if (error) {
       showAlert("Oops", error.data.message || "An error occurred", "error");
     }
