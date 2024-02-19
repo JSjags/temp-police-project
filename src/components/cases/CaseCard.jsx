@@ -30,7 +30,7 @@ const CaseCard = ({ details }) => {
             <img src={noImage} className="w-full m-auto" />
           )}
         </div>
-        <div className="px-3 pt-4 flex-1  text-project-light-black">
+        <div className="px-3 pt-4 w-3/6 text-project-light-black">
           <div className="flex justify-between text-[0.625rem] w-full">
             <p>
               {new Date(details.time_of_arrest).getDate()}-
@@ -57,11 +57,13 @@ const CaseCard = ({ details }) => {
               </p>
               <p className="text-[0.625rem] leading-5">{details.case_id}</p>
             </div>
-            <div>
+            <div className="">
               <p className="text-[0.625rem] mt-1 font-semibold leading-5">
                 Location:
               </p>
-              <p className="text-[0.625rem] leading-5">{details.address}</p>
+              <p className="text-[0.625rem] leading-5 line-clamp-1 w-full text-ellipsis">
+                {details.address} fegreggre gwrywyr 4ygr
+              </p>
             </div>
           </div>
           <div className="mt-6">

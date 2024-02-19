@@ -5,8 +5,8 @@ export const casesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // Get division route
     getCases: builder.query({
-      query: () => ({
-        url: CASES,
+      query: (routeParams) => ({
+        url: `${CASES}?${routeParams} `,
         method: "GET",
       }),
       providesTags: ["Cases"],

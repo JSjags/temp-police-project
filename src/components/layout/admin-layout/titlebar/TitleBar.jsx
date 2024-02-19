@@ -74,7 +74,7 @@ const TitleBar = () => {
           <div className="font-poppins flex flex-col justify-between items-start">
             <p className="font-inter hidden sm:block text-sm">{user?.name}</p>
             <p className="font-inter hidden sm:block text-sm text-gray-500">
-              NPF/{user?.id_number}
+              {user?.id_number}
             </p>
           </div>
           <img
