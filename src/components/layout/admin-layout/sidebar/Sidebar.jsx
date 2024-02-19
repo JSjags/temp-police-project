@@ -3,15 +3,21 @@ import { useLocation, useNavigate } from "react-router-dom";
 import policeLogo from "../../../../assets/sidebar/police-project-logo.svg";
 import hamburgerMenu from "../../../../assets/sidebar/menu.svg";
 import closeMenu from "../../../../assets/sidebar/close.svg";
+import { handleLogout } from "../../../../static/logout";
+import { useDispatch } from "react-redux";
+import { userApiSlice } from "../../../../service/division.service";
 
 /* eslint-disable react/prop-types */
 const Sidebar = ({ sidebarItems }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const [indicatorPosition, setIndicatorPosition] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
+
+  const divisionData = userApiSlice.endpoints.getDivision.useQueryState();
 
   const activeIconStyling = (route) => {
     if (pathname.includes(route)) {
@@ -57,10 +63,10 @@ const Sidebar = ({ sidebarItems }) => {
     setIndicatorPosition(
       currentTabIndex === 0
         ? "0"
-        : currentTabIndex > 4
+        : currentTabIndex > 1
         ? `calc(${currentTabIndex * 1.5}rem + ${
             currentTabIndex * 1.75
-          }rem + 40px)`
+          }rem + 140px)`
         : `calc(${currentTabIndex * 1.5}rem + ${currentTabIndex * 1.75}rem)`
     );
   }, [currentTabIndex]);
@@ -74,8 +80,18 @@ const Sidebar = ({ sidebarItems }) => {
         {/* sidebar */}
         <div className="w-full h-full pt-6 rounded-[1.25rem] relative bg-primary-black poppins flex flex-col">
           <div className="w-full px-2 flex flex-col items-center justify-center font-bold text-base gap-y-1">
-            <p className="text-project-gray w-fit">Divisional Police Station</p>
-            <p className="text-project-gray w-fit">Utako</p>
+            <p className="text-project-gray w-fit">
+              {divisionData?.currentData?.data[0]?.division_name
+                .split(" ")
+                .slice(0, -1)
+                .join(" ")}
+            </p>
+            <p className="text-project-gray w-fit">
+              {divisionData?.currentData?.data[0]?.division_name
+                .split(" ")
+                .slice(-1)
+                .join("")}
+            </p>
             <img src={policeLogo} className="w-1/3" />
           </div>
           <div className="w-full flex flex-col gap-y-7 relative mt-12 flex-1 overflow-scroll pb-20 hide-scrollbar">
@@ -87,7 +103,9 @@ const Sidebar = ({ sidebarItems }) => {
                   aria-label={sidebarItem.title}
                   onClick={() => {
                     setCurrentTabIndex(i);
-                    navigate(`/${sidebarItem.route}`);
+                    i === 2
+                      ? handleLogout(dispatch)
+                      : navigate(`/${sidebarItem.route}`);
                   }}
                   style={{
                     marginTop: i == 2 ? "140px" : "",
@@ -118,7 +136,7 @@ const Sidebar = ({ sidebarItems }) => {
             {/* indicator */}
             <div
               className={`absolute h-6  w-1 rounded-tl-sm rounded-bl-sm ${
-                currentTabIndex === 6 ? "bg-project-red" : "bg-project-yellow"
+                currentTabIndex === 2 ? "bg-project-red" : "bg-project-yellow"
               } bg-[rgba(255,255,255,0.2)] right-0`}
               style={{
                 top: indicatorPosition,

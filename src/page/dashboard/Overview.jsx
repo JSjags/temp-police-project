@@ -22,6 +22,9 @@ import { Doughnut } from "react-chartjs-2";
 import { CaseCard } from "../../components/cases";
 import { useNavigate } from "react-router-dom";
 import Select from "react-dropdown-select";
+import { useGetDivisionQuery } from "../../service/division.service";
+import { useGetCasesQuery } from "../../service/case.service";
+import { Oval } from "react-loader-spinner";
 
 ChartJS.register(ArcElement, Tooltip, CategoryScale, LinearScale, BarElement);
 defaults.font.family = "'Poppins', sans-serif";
@@ -171,6 +174,9 @@ const Overview = () => {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const [indicatorPosition, setIndicatorPosition] = useState(0);
   const [, setIndicatorWidth] = useState(0);
+
+  const response = useGetDivisionQuery();
+  const casesData = useGetCasesQuery();
 
   const activeTextStyling = (index) => {
     if (index === currentTabIndex) {
@@ -475,10 +481,37 @@ const Overview = () => {
             <img src={chevron} className="-rotate-90" />
           </button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-4 gap-4">
-          {cases.slice(0, 3).map((item) => (
-            <CaseCard key={item.id} details={item} />
-          ))}
+        <div>
+          {casesData.isLoading && (
+            <div className="flex justify-center items-center w-full h-[clamp(300px,50vh,360px)]">
+              <Oval
+                visible={true}
+                height="80"
+                width="80"
+                color="#020065"
+                secondaryColor="#02006552"
+                ariaLabel="oval-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+              />
+            </div>
+          )}
+          {casesData.isSuccess &&
+            casesData?.currentData?.data?.cases.length && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-4 gap-4">
+                {casesData?.currentData?.data?.cases.slice(0, 3).map((item) => (
+                  <CaseCard key={item.id} details={item} />
+                ))}
+              </div>
+            )}
+          {casesData.isSuccess &&
+            casesData?.currentData?.data?.cases?.length < 1 && (
+              <div className="flex justify-center items-center w-full h-[clamp(300px,50vh,360px)]">
+                <p className="font-poppins justify-center items-center">
+                  No recent cases yet.
+                </p>
+              </div>
+            )}
         </div>
       </div>
     </div>
