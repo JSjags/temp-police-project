@@ -38,7 +38,7 @@ const CaseCard = ({ details }) => {
               {new Date(details.time_of_arrest).getFullYear()}
             </p>
             <p>
-              {details?.gender === "001"
+              {details?.gender.toLowerCase() === "male"
                 ? "M"
                 : details?.gender === null ||
                   details?.gender === undefined ||
