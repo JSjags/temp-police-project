@@ -119,12 +119,12 @@ function Register() {
                         type="text"
                         name="name"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="name"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Full Name{" "}
                       </label>
@@ -143,12 +143,12 @@ function Register() {
                         type="email"
                         name="email"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="email"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Email Address{" "}
                       </label>
@@ -167,10 +167,12 @@ function Register() {
                         type="text"
                         name="police_division_id"
                         component="select"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       >
-                        <option value="" selected disabled hidden></option>
+                        <option value="" selected disabled>
+                          select division
+                        </option>
                         {divisionData &&
                           divisionData.data.map((row) => (
                             <option key={row._id} value={row._id}>
@@ -180,7 +182,7 @@ function Register() {
                       </Field>
                       <label
                         htmlFor="police_division_id"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Police Division{" "}
                       </label>
@@ -199,12 +201,12 @@ function Register() {
                         type="text"
                         name="id_number"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="id_number"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         ID Number{" "}
                       </label>
@@ -223,11 +225,12 @@ function Register() {
                         type={showPassword ? "text" : "password"}
                         name="password"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="password"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Password{" "}
                       </label>
@@ -257,12 +260,13 @@ function Register() {
                         type={showConfirmPassword ? "text" : "password"}
                         name="confirm_password"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         id="outlined"
                         htmlFor="confirm_password"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Re-enter Password{" "}
                       </label>
@@ -341,12 +345,12 @@ function Register() {
                         type="text"
                         name="name"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="name"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Full Name{" "}
                       </label>
@@ -365,12 +369,12 @@ function Register() {
                         type="email"
                         name="email"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="email"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Email Address{" "}
                       </label>
@@ -389,16 +393,22 @@ function Register() {
                         type="text"
                         name="police_division_id"
                         component="select"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       >
-                        <option value="" selected disabled hidden></option>
-                        <option value="1">Division 1</option>
-                        <option value="2">Division 2</option>
+                        <option value="" selected disabled>
+                          select division
+                        </option>
+                        {divisionData &&
+                          divisionData.data.map((row) => (
+                            <option key={row._id} value={row._id}>
+                              {row.division_name}
+                            </option>
+                          ))}
                       </Field>
                       <label
                         htmlFor="police_division_id"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Police Division{" "}
                       </label>
@@ -417,12 +427,12 @@ function Register() {
                         type="text"
                         name="id_number"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500
-        rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="id_number"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         ID Number{" "}
                       </label>
@@ -441,11 +451,12 @@ function Register() {
                         type={showPassword ? "text" : "password"}
                         name="password"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         htmlFor="password"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Password{" "}
                       </label>
@@ -471,15 +482,17 @@ function Register() {
                   <div className="mb-5">
                     <div className="relative w-full input-component empty sm:inline-block sm:pr-1">
                       <Field
+                        id="confirm_password"
                         type={showConfirmPassword ? "text" : "password"}
                         name="confirm_password"
                         component="input"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
                       <label
                         id="outlined"
                         htmlFor="confirm_password"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Re-enter Password{" "}
                       </label>

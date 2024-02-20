@@ -9,6 +9,7 @@ const environment = {
   },
 };
 
-const currentEnvironment = import.meta.env.VITE_REACT_APP_ENV || "development";
+// const currentEnvironment = import.meta.env.VITE_REACT_APP_ENV || "development";
+const currentEnvironment = "production";
 
 export default environment[currentEnvironment];

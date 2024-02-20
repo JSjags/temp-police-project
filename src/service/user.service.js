@@ -1,4 +1,4 @@
-import { GETUSER, LOGIN, REGISTER } from "./constants";
+import { GETUSER, LOGIN, OVERVIEW, REGISTER } from "./constants";
 import apiSlice from "./api/apiSlice";
 import { updateUser } from "../redux/slices/user.slice";
 
@@ -59,6 +59,15 @@ export const userApiSlice = apiSlice.injectEndpoints({
       providesTags: ["User"],
     }),
 
+    // Get dashboard overview
+    getDashoardData: builder.query({
+      query: (period) => ({
+        url: `${OVERVIEW}?period=${period}`,
+        method: "GET",
+      }),
+      providesTags: ["User", "Dashboard"],
+    }),
+
     // // update user route
     // updateUser: builder.mutation({
     //   query: (data) => ({
@@ -85,4 +94,5 @@ export const {
   useLoginUserMutation,
   useRegisterUserMutation,
   useGetUserQuery,
+  useGetDashoardDataQuery,
 } = userApiSlice;

@@ -13,13 +13,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGetCasesQuery } from "../../service/case.service";
 import { Oval } from "react-loader-spinner";
 import { Await, useNavigate, useSearchParams } from "react-router-dom";
-import { format } from "date-fns";
+import { format, max } from "date-fns";
 import { BsArrowBarLeft, BsArrowLeft } from "react-icons/bs";
 import { useGetDivisionQuery } from "../../service/division.service";
 // import { format } from "date-fns";
 
+const maxItems = 12;
+
 const Cases = () => {
-  // const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(
@@ -47,7 +49,7 @@ const Cases = () => {
 
   const routeParams = new URLSearchParams(location.search).toString();
   // const casesData = useGetCasesQuery(routeParams);
-  const response = useGetDivisionQuery();
+  useGetDivisionQuery();
 
   return (
     <Suspense
@@ -261,112 +263,176 @@ const Cases = () => {
                 {/* Third Section */}
                 <div className="p-5 bg-white font-poppins mt-5 sm:mt-2">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-4 gap-4">
-                    {casesData?.currentData?.data?.cases.map((item) => (
-                      <CaseCard key={item._id} details={item} />
-                    ))}
+                    {casesData?.currentData?.data?.cases
+                      .slice(
+                        currentPage === 1 ? 0 : (currentPage - 1) * maxItems,
+                        currentPage === 1 ? maxItems : currentPage * maxItems
+                      )
+                      .map((item) => (
+                        <CaseCard key={item._id} details={item} />
+                      ))}
                   </div>
                 </div>
 
                 {/* Pagination */}
-                <div className="w-full font-poppins font-semibold text-[#626C70] flex justify-end bg-white mb-10 p-5 gap-3 transition-all">
-                  {/* Previous button */}
-                  {/* <button
-          aria-label="Previous page"
-          className="h-8 w-8 group rounded-full flex items-center justify-center bg-[#F0F6FF] hover:bg-[#005CE8]"
-        >
-          <img
-            src={arrow}
-            className="group-hover:brightness-0 group-hover:invert"
-          />
-        </button> */}
-                  {/* Page buttons */}
-                  {/* <div className="flex gap-1 items-center justify-center text-sm">
-          <button
-            aria-label="Page 1"
-            className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
-              currentPage === 1 ? "bg-gray-100" : ""
-            }`}
-            onClick={() => setCurrentPage(1)}
-          >
-            <span
-              className={`group-hover:text-white ${
-                currentPage === 1 ? "text-black" : ""
-              }`}
-            >
-              1
-            </span>
-          </button>
-          <button
-            aria-label="Page 2"
-            className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
-              currentPage === 2 ? "bg-gray-100" : ""
-            }`}
-            onClick={() => setCurrentPage(2)}
-          >
-            <span
-              className={`group-hover:text-white ${
-                currentPage === 2 ? "text-black" : ""
-              }`}
-            >
-              2
-            </span>
-          </button>
-          <button
-            aria-label="Page 3"
-            className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
-              currentPage === 3 ? "bg-gray-100" : ""
-            }`}
-            onClick={() => setCurrentPage(3)}
-          >
-            <span
-              className={`group-hover:text-white ${
-                currentPage === 3 ? "text-black" : ""
-              }`}
-            >
-              3
-            </span>
-          </button>
-          <button
-            aria-label="Page 4"
-            className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
-              currentPage === 4 ? "bg-gray-100" : ""
-            }`}
-            onClick={() => setCurrentPage(4)}
-          >
-            <span
-              className={`group-hover:text-white ${
-                currentPage === 4 ? "text-black" : ""
-              }`}
-            >
-              4
-            </span>
-          </button>
-          <button
-            aria-label="Page 5"
-            className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
-              currentPage === 5 ? "bg-gray-100" : ""
-            }`}
-            onClick={() => setCurrentPage(5)}
-          >
-            <span
-              className={`group-hover:text-white ${
-                currentPage === 5 ? "text-black" : ""
-              }`}
-            >
-              5
-            </span>
-          </button>
-        </div> */}
-                  {/* Next button */}
-                  {/* <button
-          aria-label="Next page"
-          className="h-8 w-8 group rounded-full flex items-center justify-center bg-[#F0F6FF] hover:bg-[#005CE8]"
-        >
-          <img
-            src={arrow}
-            className="rotate-180 group-hover:brightness-0 group-hover:invert"
-          />
-        </button> */}
+                <div className="flex gap-4 justify-between mb-10 flex-wrap bg-white">
+                  <div className="font-poppins text-sm p-5 h-[4.5rem] flex items-center">
+                    <span>
+                      Showing{" "}
+                      {currentPage === 1
+                        ? currentPage
+                        : (currentPage - 1) * maxItems + 1}{" "}
+                      to{" "}
+                      {currentPage * maxItems >
+                      casesData?.currentData?.data?.cases.length
+                        ? casesData?.currentData?.data?.cases.length
+                        : currentPage * maxItems}{" "}
+                      of {casesData?.currentData?.data?.cases.length} entries
+                    </span>
+                  </div>
+                  <div className="w-fit font-poppins font-semibold text-[#626C70] flex justify-end bg-white mb-10 p-5 gap-3 transition-all">
+                    {/* Previous button */}
+                    <button
+                      aria-label="Previous page"
+                      className="h-8 w-8 group rounded-full flex items-center justify-center bg-[#F0F6FF] hover:bg-[#005CE8]"
+                      onClick={() =>
+                        setCurrentPage((prev) => (prev <= 1 ? prev : prev - 1))
+                      }
+                      disabled={currentPage === 1}
+                      style={{
+                        filter: currentPage === 1 ? "grayscale(100)" : "none",
+                        cursor: currentPage === 1 ? "not-allowed" : "",
+                      }}
+                    >
+                      <img
+                        src={arrow}
+                        className="group-hover:brightness-0 group-hover:invert"
+                      />
+                    </button>
+                    {/* Page buttons */}
+                    {/* <div className="flex gap-1 items-center justify-center text-sm">
+                      <button
+                        aria-label="Page 1"
+                        className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
+                          currentPage === 1 ? "bg-gray-100" : ""
+                        }`}
+                        onClick={() => setCurrentPage(1)}
+                      >
+                        <span
+                          className={`group-hover:text-white ${
+                            currentPage === 1 ? "text-black" : ""
+                          }`}
+                        >
+                          1
+                        </span>
+                      </button>
+                      <button
+                        aria-label="Page 2"
+                        className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
+                          currentPage === 2 ? "bg-gray-100" : ""
+                        }`}
+                        onClick={() => setCurrentPage(2)}
+                      >
+                        <span
+                          className={`group-hover:text-white ${
+                            currentPage === 2 ? "text-black" : ""
+                          }`}
+                        >
+                          2
+                        </span>
+                      </button>
+                      <button
+                        aria-label="Page 3"
+                        className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
+                          currentPage === 3 ? "bg-gray-100" : ""
+                        }`}
+                        onClick={() => setCurrentPage(3)}
+                      >
+                        <span
+                          className={`group-hover:text-white ${
+                            currentPage === 3 ? "text-black" : ""
+                          }`}
+                        >
+                          3
+                        </span>
+                      </button>
+                      <button
+                        aria-label="Page 4"
+                        className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
+                          currentPage === 4 ? "bg-gray-100" : ""
+                        }`}
+                        onClick={() => setCurrentPage(4)}
+                      >
+                        <span
+                          className={`group-hover:text-white ${
+                            currentPage === 4 ? "text-black" : ""
+                          }`}
+                        >
+                          4
+                        </span>
+                      </button>
+                      <button
+                        aria-label="Page 5"
+                        className={`h-8 w-8 group rounded-full flex items-center justify-center hover:bg-[#005CE8] ${
+                          currentPage === 5 ? "bg-gray-100" : ""
+                        }`}
+                        onClick={() => setCurrentPage(5)}
+                      >
+                        <span
+                          className={`group-hover:text-white ${
+                            currentPage === 5 ? "text-black" : ""
+                          }`}
+                        >
+                          5
+                        </span>
+                      </button>
+                    </div> */}
+                    {/* Next button */}
+                    <button
+                      aria-label="Next page"
+                      className="h-8 w-8 group rounded-full flex items-center justify-center bg-[#F0F6FF] hover:bg-[#005CE8]"
+                      onClick={() =>
+                        setCurrentPage((prev) =>
+                          prev ===
+                          Math.ceil(
+                            casesData?.currentData?.data?.cases.length /
+                              maxItems
+                          )
+                            ? prev
+                            : prev + 1
+                        )
+                      }
+                      disabled={
+                        currentPage ===
+                        Math.ceil(
+                          casesData?.currentData?.data?.cases.length / maxItems
+                        )
+                      }
+                      style={{
+                        filter:
+                          currentPage ===
+                          Math.ceil(
+                            casesData?.currentData?.data?.cases.length /
+                              maxItems
+                          )
+                            ? "grayscale(100)"
+                            : "none",
+                        cursor:
+                          currentPage ===
+                          Math.ceil(
+                            casesData?.currentData?.data?.cases.length /
+                              maxItems
+                          )
+                            ? "not-allowed"
+                            : "",
+                      }}
+                    >
+                      <img
+                        src={arrow}
+                        className="rotate-180 group-hover:brightness-0 group-hover:invert"
+                      />
+                    </button>
+                  </div>
                 </div>
               </div>
             )}

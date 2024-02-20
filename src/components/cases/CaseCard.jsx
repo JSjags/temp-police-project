@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { AnimatePresence, motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useOutsideCloser } from "../../hooks/useOutsideCloser";
 import noImage from "../../assets/cases/no-image.svg";
 import download from "../../assets/cases/download.svg";
@@ -11,13 +11,38 @@ import closeMenu from "../../assets/sidebar/close.svg";
 const CaseCard = ({ details }) => {
   const [showCardMenu, setShowCardMenu] = useState(false);
   const [showCaseDetails, setShowCaseDetails] = useState(false);
+
+  const deadline = new Date(
+    new Date(details.time_of_arrest).getTime() + 60 * 60 * 24 * 1000
+  );
+
   const modalRef = useRef();
+
+  const [, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  const getTime = () => {
+    const time = Date.parse(deadline) - Date.now();
+
+    setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
+    setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
+    setMinutes(Math.floor((time / 1000 / 60) % 60));
+    setSeconds(Math.floor((time / 1000) % 60));
+  };
 
   useOutsideCloser(modalRef, showCaseDetails, setShowCaseDetails);
 
+  useEffect(() => {
+    const interval = setInterval(() => getTime(deadline), 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
-      <div className="border-r borer-solid border-project-gray flex min-h-[298px]">
+      <div className="border-r borer-solid border-project-gray flex min-h-[298px] relative">
         <div className="w-3/6 h-full bg-[#D9D9D9] flex items-center">
           {details?.mug_shot_url !== "" ||
           details.mug_shot_url == null ||
@@ -29,6 +54,16 @@ const CaseCard = ({ details }) => {
           ) : (
             <img src={noImage} className="w-full m-auto" />
           )}
+          {/* Timer */}
+          <div
+            className="absolute bottom-3 left-3 p-2 bg-red-100 font-bold rounded shadow-md"
+            style={{
+              backgroundColor: hours < 0 ? "#FCECEC" : "#ECFCF1",
+              color: hours < 0 ? "#F70505" : "#3C9B14",
+            }}
+          >
+            {hours}:{Math.abs(minutes)}:{Math.abs(seconds)}
+          </div>
         </div>
         <div className="px-3 pt-4 w-3/6 text-project-light-black">
           <div className="flex justify-between text-[0.625rem] w-full">
@@ -38,7 +73,7 @@ const CaseCard = ({ details }) => {
               {new Date(details.time_of_arrest).getFullYear()}
             </p>
             <p>
-              {details?.gender.toLowerCase() === "male"
+              {details?.gender?.toLowerCase() === "male"
                 ? "M"
                 : details?.gender === null ||
                   details?.gender === undefined ||

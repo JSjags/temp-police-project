@@ -83,12 +83,13 @@ function Login() {
                         name="identifier"
                         component="input"
                         type="text"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
 
                       <label
                         htmlFor="identifier"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Email/ID
                       </label>
@@ -107,12 +108,13 @@ function Login() {
                         name="password"
                         component="input"
                         type="password"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
 
                       <label
                         htmlFor="password"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Password{" "}
                       </label>
@@ -179,12 +181,13 @@ function Login() {
                         name="identifier"
                         component="input"
                         type="text"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
 
                       <label
                         htmlFor="identifier"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Email/ID
                       </label>
@@ -203,12 +206,13 @@ function Login() {
                         name="password"
                         component="input"
                         type="password"
-                        className="auth-input w-full border-gray-300 p-4 transition-all hover:border-gray-500 focus:border-green-500 rounded-md focus:ring-0 group focus:outline-0 border text-base peer"
+                        className="auth-input block px-2.5 pb-2.5 pt-4 w-full text-sm text-white bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600  focus:outline-none focus:ring-0 hover:border-gray-500 focus:border-green-500 peer"
+                        placeholder=" "
                       />
 
                       <label
                         htmlFor="password"
-                        className="auth-label text-sm font-medium absolute top-1/2 -translate-y-1/2 px-1 left-2 peer-focus:top-0 bg-[#020065] z-20 transition-all duration-300"
+                        className="auth-label absolute text-sm  duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#020065] px-1 peer-focus:px-1 peer-focus:text-white peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                       >
                         Password{" "}
                       </label>
