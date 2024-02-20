@@ -62,7 +62,14 @@ const CaseCard = ({ details }) => {
               color: hours < 0 ? "#F70505" : "#3C9B14",
             }}
           >
-            {hours}:{Math.abs(minutes)}:{Math.abs(seconds)}
+            {hours}:
+            {Math.abs(minutes) < 10
+              ? `0${Math.abs(minutes)}`
+              : Math.abs(minutes)}
+            :
+            {Math.abs(seconds) < 10
+              ? `0${Math.abs(seconds)}`
+              : Math.abs(seconds)}
           </div>
         </div>
         <div className="px-3 pt-4 w-3/6 text-project-light-black">
