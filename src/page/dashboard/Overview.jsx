@@ -715,7 +715,7 @@ const Overview = () => {
             </div>
           </div>
         ) : (
-          !dashboardData.isLoading && (
+          !dashboardData.isFetching && (
             <div className="flex flex-col font-semibold text-project-light-black items-center justify-center min-h-60">
               <div className="w-11 h-11 p-[6px] rounded-md bg-red-100 flex justify-center items-center">
                 <img src={handcuffs} />
