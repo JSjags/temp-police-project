@@ -104,7 +104,7 @@ const CaseCard = ({ details }) => {
                 Location:
               </p>
               <p className="text-[0.625rem] leading-5 line-clamp-1 w-full text-ellipsis">
-                {details.address} fegreggre gwrywyr 4ygr
+                {details?.address ?? "N/A"}
               </p>
             </div>
           </div>

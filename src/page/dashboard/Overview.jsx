@@ -472,256 +472,256 @@ const Overview = () => {
           </div>
         )}
         {dashboardData.isSuccess &&
-          dashboardData?.currentData?.data?.arrestSummary?.summary.length && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-              {/* First card */}
-              <div>
-                <div className="justify-between h-52 pt-8 pl-8 border border-solid border-project-gray rounded-xl">
-                  <div className="flex w-5/6 justify-between items-start">
-                    <div>
-                      <p className="font-bold text-5xl text-project-light-black">
-                        {dashboardData?.currentData?.data?.totalArrest}
-                      </p>
-                      <p className="font-medium text-base text-project-light-black">
-                        Total Arrests
-                      </p>
-                    </div>
-                    <div className="w-11 h-11 p-[6px] rounded-md bg-red-100 flex justify-center items-center">
-                      <img src={handcuffs} />
-                    </div>
-                  </div>
-                  <p className="text-xs mt-4 inline-flex items-center">
-                    <img src={increase} className="w-2 inline-flex mr-1" />
-                    <span className="text-project-green font-medium">
-                      +
-                      {(dashboardData?.currentData?.data?.totalArrest /
-                        dashboardData?.currentData?.data?.totalArrest) *
-                        100}
-                      %
-                    </span>
-                    &nbsp;
-                    <span className="text-project-light-black">
-                      from the last month
-                    </span>
-                  </p>
-                </div>
-              </div>
-              {/* Second card */}
-              <div>
-                <div className="justify-between h-52 pt-6 pl-4 border border-solid border-project-gray rounded-xl">
-                  <p className="font-inter text-xs min-[500px]:text-base text-project-light-black font-semibold">
-                    Legal Representation
-                  </p>
-                  <div className="mt-3">
-                    <div>
-                      {/* Can afford */}
-                      <p className="font-poppins text-base text-project-light-black font-semibold">
-                        Can Afford
-                      </p>
-                      <PercentageShare
-                        bgColor={"rgba(5,4,102,.2)"}
-                        color={"rgba(5,4,102,1)"}
-                        total={
-                          dashboardData?.currentData?.data?.legal_representaion
-                            ?.withoutLegalRep?.total +
-                          dashboardData?.currentData?.data?.legal_representaion
-                            ?.withLegalRep?.total
-                        }
-                        value={
-                          dashboardData?.currentData?.data?.legal_representaion
-                            ?.withLegalRep?.total
-                        }
-                        key={"CAN-AFFORD"}
-                      />
-                      <p className="text-xs inline-flex items-center -translate-y-2">
-                        <img src={decrease} className="w-2 inline-flex mr-1" />
-                        <span className="text-project-red font-medium">
-                          +8%
-                        </span>
-                        &nbsp;
-                        <span className="text-project-light-black">
-                          from the last month
-                        </span>
-                      </p>
-
-                      {/* Can't afford */}
-                      <p className="font-poppins text-base text-project-light-black font-semibold">
-                        Can't Afford
-                      </p>
-                      <PercentageShare
-                        bgColor={"rgba(243, 51, 51,.2)"}
-                        color={"rgba(243, 51, 51, 1)"}
-                        total={
-                          dashboardData?.currentData?.data?.legal_representaion
-                            ?.withoutLegalRep?.total +
-                          dashboardData?.currentData?.data?.legal_representaion
-                            ?.withLegalRep?.total
-                        }
-                        value={
-                          dashboardData?.currentData?.data?.legal_representaion
-                            ?.withoutLegalRep?.total
-                        }
-                        key={"CANT-AFFORD"}
-                      />
-                      <p className="text-xs inline-flex items-center -translate-y-2">
-                        <img src={increase} className="w-2 inline-flex mr-1" />
-                        <span className="text-project-green font-medium">
-                          +5%
-                        </span>
-                        &nbsp;
-                        <span className="text-project-light-black">
-                          from the last month
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Third card */}
-              <div>
-                <div className="flex flex-col justify-between h-52 pt-6 border border-solid border-project-gray rounded-xl">
-                  <div className="flex justify-between items-center">
-                    <p className="font-inter text-xs min-[500px]:text-base text-project-light-black font-semibold pl-4 whitespace-nowrap">
-                      Arrest Summary
+        dashboardData?.currentData?.data?.arrestSummary?.summary.length ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+            {/* First card */}
+            <div>
+              <div className="justify-between h-52 pt-8 pl-8 border border-solid border-project-gray rounded-xl">
+                <div className="flex w-5/6 justify-between items-start">
+                  <div>
+                    <p className="font-bold text-5xl text-project-light-black">
+                      {dashboardData?.currentData?.data?.totalArrest}
                     </p>
-                    {!!(
-                      dashboardData.isSuccess &&
-                      dashboardData?.currentData?.data?.arrestSummary
-                        ?.all_crime_types.length
-                    ) && (
-                      <div className="mr-4 font-dmsans font-semibold border rounded-sm bg-white border-solid border-project-gray">
-                        <Select
-                          values={
-                            dashboardData.isSuccess &&
-                            dashboardData?.currentData?.data?.arrestSummary
-                              ?.all_crime_types.length
-                              ? [
-                                  "All cases",
-                                  ...(dashboardData?.currentData?.data
-                                    ?.arrestSummary?.all_crime_types ?? []),
-                                ].map((type) => ({
-                                  value: type
-                                    .toLowerCase()
-                                    .split(" ")
-                                    .join("_"),
-                                  label: type,
-                                }))
-                              : []
-                          }
-                          dropdownHandleRenderer={({ state, methods }) => (
-                            <img
-                              src={chevron}
-                              className={
-                                state.dropdown
-                                  ? "rotate-180 transition-all"
-                                  : "transition-all"
-                              }
-                              onClick={() => methods.dropDown("toggle")}
-                            />
-                          )}
-                          contentRenderer={({ state }) => (
-                            <p className="whitespace-nowrap w-24 overflow-hidden text-ellipsis text-project-light-black">
-                              {state.values[0].label}
-                            </p>
-                          )}
-                          itemRenderer={({
-                            item,
-                            itemIndex,
-                            props,
-                            state,
-                            methods,
-                          }) => (
-                            <div
-                              onClick={() => {
-                                methods.clearAll();
-                                methods.addItem(item);
-                                setCurrentSummmaryItem(item);
-                              }}
-                              className="p-1 px-2 bg-[#F4F0F0] text-project-light-black hover:bg-project-blue hover:text-white transition-all"
-                            >
-                              {item.label}
-                            </div>
-                          )}
-                          closeOnScroll={true}
-                          options={[
-                            { value: "all-cases", label: "All cases" },
-                            { value: "drug-abuse", label: "Drug Abuse" },
-                            {
-                              value: "sexual-assault",
-                              label: "Sexual Assault",
-                            },
-                            { value: "murder", label: "Murder" },
-                            { value: "cultism", label: "Cultism" },
-                            {
-                              value: "violent-activities",
-                              label: "Violent Activities",
-                            },
-                            { value: "others", label: "Others" },
-                          ]}
-                          // onChange={(values) => this.onChange(values)}
-                          dropdownGap={5}
-                          style={{
-                            width: 120,
-                            fontSize: "10px",
-                            margin: 0,
-                            height: 0,
-                            minHeight: "20px",
-                            border: "none",
-                            outlineColor: "red",
-                          }}
-                          className="custom-outline"
-                        />
-                      </div>
-                    )}
+                    <p className="font-medium text-base text-project-light-black">
+                      Total Arrests
+                    </p>
                   </div>
-                  <div className="flex flex-1 items-center justify-between px-2 pb-6">
-                    {/* previous button */}
-                    {/* <button
+                  <div className="w-11 h-11 p-[6px] rounded-md bg-red-100 flex justify-center items-center">
+                    <img src={handcuffs} />
+                  </div>
+                </div>
+                <p className="text-xs mt-4 inline-flex items-center">
+                  <img src={increase} className="w-2 inline-flex mr-1" />
+                  <span className="text-project-green font-medium">
+                    +
+                    {(dashboardData?.currentData?.data?.totalArrest /
+                      dashboardData?.currentData?.data?.totalArrest) *
+                      100}
+                    %
+                  </span>
+                  &nbsp;
+                  <span className="text-project-light-black">
+                    from the last month
+                  </span>
+                </p>
+              </div>
+            </div>
+            {/* Second card */}
+            <div>
+              <div className="justify-between h-52 pt-6 pl-4 border border-solid border-project-gray rounded-xl">
+                <p className="font-inter text-xs min-[500px]:text-base text-project-light-black font-semibold">
+                  Legal Representation
+                </p>
+                <div className="mt-3">
+                  <div>
+                    {/* Can afford */}
+                    <p className="font-poppins text-base text-project-light-black font-semibold">
+                      Can Afford
+                    </p>
+                    <PercentageShare
+                      bgColor={"rgba(5,4,102,.2)"}
+                      color={"rgba(5,4,102,1)"}
+                      total={
+                        dashboardData?.currentData?.data?.legal_representaion
+                          ?.withoutLegalRep?.total +
+                        dashboardData?.currentData?.data?.legal_representaion
+                          ?.withLegalRep?.total
+                      }
+                      value={
+                        dashboardData?.currentData?.data?.legal_representaion
+                          ?.withLegalRep?.total
+                      }
+                      key={"CAN-AFFORD"}
+                    />
+                    <p className="text-xs inline-flex items-center -translate-y-2">
+                      <img src={decrease} className="w-2 inline-flex mr-1" />
+                      <span className="text-project-red font-medium">+8%</span>
+                      &nbsp;
+                      <span className="text-project-light-black">
+                        from the last month
+                      </span>
+                    </p>
+
+                    {/* Can't afford */}
+                    <p className="font-poppins text-base text-project-light-black font-semibold">
+                      Can't Afford
+                    </p>
+                    <PercentageShare
+                      bgColor={"rgba(243, 51, 51,.2)"}
+                      color={"rgba(243, 51, 51, 1)"}
+                      total={
+                        dashboardData?.currentData?.data?.legal_representaion
+                          ?.withoutLegalRep?.total +
+                        dashboardData?.currentData?.data?.legal_representaion
+                          ?.withLegalRep?.total
+                      }
+                      value={
+                        dashboardData?.currentData?.data?.legal_representaion
+                          ?.withoutLegalRep?.total
+                      }
+                      key={"CANT-AFFORD"}
+                    />
+                    <p className="text-xs inline-flex items-center -translate-y-2">
+                      <img src={increase} className="w-2 inline-flex mr-1" />
+                      <span className="text-project-green font-medium">
+                        +5%
+                      </span>
+                      &nbsp;
+                      <span className="text-project-light-black">
+                        from the last month
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Third card */}
+            <div>
+              <div className="flex flex-col justify-between h-52 pt-6 border border-solid border-project-gray rounded-xl">
+                <div className="flex justify-between items-center">
+                  <p className="font-inter text-xs min-[500px]:text-base text-project-light-black font-semibold pl-4 whitespace-nowrap">
+                    Arrest Summary
+                  </p>
+                  {!!(
+                    dashboardData.isSuccess &&
+                    dashboardData?.currentData?.data?.arrestSummary
+                      ?.all_crime_types.length
+                  ) && (
+                    <div className="mr-4 font-dmsans font-semibold border rounded-sm bg-white border-solid border-project-gray">
+                      <Select
+                        values={
+                          dashboardData.isSuccess &&
+                          dashboardData?.currentData?.data?.arrestSummary
+                            ?.all_crime_types.length
+                            ? [
+                                "All cases",
+                                ...(dashboardData?.currentData?.data
+                                  ?.arrestSummary?.all_crime_types ?? []),
+                              ].map((type) => ({
+                                value: type.toLowerCase().split(" ").join("_"),
+                                label: type,
+                              }))
+                            : []
+                        }
+                        dropdownHandleRenderer={({ state, methods }) => (
+                          <img
+                            src={chevron}
+                            className={
+                              state.dropdown
+                                ? "rotate-180 transition-all"
+                                : "transition-all"
+                            }
+                            onClick={() => methods.dropDown("toggle")}
+                          />
+                        )}
+                        contentRenderer={({ state }) => (
+                          <p className="whitespace-nowrap w-24 overflow-hidden text-ellipsis text-project-light-black">
+                            {state.values[0].label}
+                          </p>
+                        )}
+                        itemRenderer={({
+                          item,
+                          itemIndex,
+                          props,
+                          state,
+                          methods,
+                        }) => (
+                          <div
+                            onClick={() => {
+                              methods.clearAll();
+                              methods.addItem(item);
+                              setCurrentSummmaryItem(item);
+                            }}
+                            className="p-1 px-2 bg-[#F4F0F0] text-project-light-black hover:bg-project-blue hover:text-white transition-all"
+                          >
+                            {item.label}
+                          </div>
+                        )}
+                        closeOnScroll={true}
+                        options={[
+                          { value: "all-cases", label: "All cases" },
+                          { value: "drug-abuse", label: "Drug Abuse" },
+                          {
+                            value: "sexual-assault",
+                            label: "Sexual Assault",
+                          },
+                          { value: "murder", label: "Murder" },
+                          { value: "cultism", label: "Cultism" },
+                          {
+                            value: "violent-activities",
+                            label: "Violent Activities",
+                          },
+                          { value: "others", label: "Others" },
+                        ]}
+                        // onChange={(values) => this.onChange(values)}
+                        dropdownGap={5}
+                        style={{
+                          width: 120,
+                          fontSize: "10px",
+                          margin: 0,
+                          height: 0,
+                          minHeight: "20px",
+                          border: "none",
+                          outlineColor: "red",
+                        }}
+                        className="custom-outline"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-1 items-center justify-between px-2 pb-6">
+                  {/* previous button */}
+                  {/* <button
                   aria-label="Previous"
                   className=" p-1 hover:bg-project-gray flex justify-center items-center rounded-lg trnasition-all duration-150"
                 >
                   <img src={chevron} className="w-6 rotate-90" />
                 </button> */}
 
-                    {/* chart */}
-                    <div className="flex-1 h-[140px] w-[140px] pt-3 flex justify-center items-center">
-                      {/* <ReactEcharts
+                  {/* chart */}
+                  <div className="flex-1 h-[140px] w-[140px] pt-3 flex justify-center items-center">
+                    {/* <ReactEcharts
                     option={options}
                     className="w-[140px] h-[140px]"
                   /> */}
-                      <Doughnut
-                        redraw={true}
-                        data={
-                          currentSummmaryItem.label.toLowerCase() ===
-                          "all cases"
-                            ? data
-                            : currentSummmaryItem.label.toLowerCase() ===
-                              "drug abuse sexual assault murder cultism violent activities others"
-                            ? drugData
-                            : otherData
-                        }
-                        currentSummaryItem={currentSummmaryItem}
-                        summaryData={
-                          dashboardData?.currentData?.data?.arrestSummary
-                            ?.summary
-                        }
-                        plugins={[myPluginSuperText, myPluginSubText]}
-                      />
-                    </div>
+                    <Doughnut
+                      redraw={true}
+                      data={
+                        currentSummmaryItem.label.toLowerCase() === "all cases"
+                          ? data
+                          : currentSummmaryItem.label.toLowerCase() ===
+                            "drug abuse sexual assault murder cultism violent activities others"
+                          ? drugData
+                          : otherData
+                      }
+                      currentSummaryItem={currentSummmaryItem}
+                      summaryData={
+                        dashboardData?.currentData?.data?.arrestSummary?.summary
+                      }
+                      plugins={[myPluginSuperText, myPluginSubText]}
+                    />
+                  </div>
 
-                    {/* next button */}
-                    {/* <button
+                  {/* next button */}
+                  {/* <button
                   aria-label="Previous"
                   className=" p-1 hover:bg-project-gray flex justify-center items-center rounded-lg trnasition-all duration-150"
                 >
                   <img src={chevron} className="w-6 -rotate-90" />
                 </button> */}
-                  </div>
                 </div>
               </div>
             </div>
-          )}
+          </div>
+        ) : (
+          <div className="flex flex-col font-semibold text-project-light-black items-center justify-center min-h-60">
+            <div className="w-11 h-11 p-[6px] rounded-md bg-red-100 flex justify-center items-center">
+              <img src={handcuffs} />
+            </div>
+            <p className="mt-6 mx-4">No arrests made yet!</p>
+          </div>
+        )}
       </div>
       {/* Second Section */}
       <div className="p-5 rounded-xl bg-white font-poppins mt-6">
